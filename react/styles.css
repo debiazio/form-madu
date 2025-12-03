@@ -1,0 +1,76 @@
+.fcbutton:disabled {
+  background-color: #bfbfbf !important;
+  color: #ffffff !important;
+  cursor: not-allowed !important;
+  opacity: 1 !important;
+  border-color: #bfbfbf !important;
+}
+
+
+.fccontainer {
+  max-width: 50vw;
+  margin: 50px auto;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.fctitle {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.fcform {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.fcinput,
+.fctextarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.fctextarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.fcbutton {
+  padding: 12px;
+  background: #1f7eca;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.fcbutton:hover {
+  background: #FEBBCE;
+}
+
+.fcsuccess {
+  color: #1a8f3a;
+  margin: 0;
+  margin-left: 5px;
+}
+
+.fcerror {
+  color: #c62828;
+  margin: 0;
+  margin-left: 5px;
+}
+
+@media screen and (max-width: 1024px) {
+  .fccontainer {
+    margin: unset;
+    max-width: unset;
+  }
+}
