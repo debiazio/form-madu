@@ -7,14 +7,11 @@
 }
 
 
-.fccontainer {
-  max-width: 50vw;
+/* .fccontainer {
   margin: 50px auto;
   padding: 24px;
-  background: #fff;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
+} */
 
 .fctitle {
   text-align: center;
@@ -34,6 +31,7 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 16px;
+  background-color: unset!important;
 }
 
 .fctextarea {
@@ -43,7 +41,7 @@
 
 .fcbutton {
   padding: 12px;
-  background: #1f7eca;
+  background: #04264B;
   color: white;
   font-weight: bold;
   border: none;
@@ -53,7 +51,7 @@
 }
 
 .fcbutton:hover {
-  background: #FEBBCE;
+  background: #05386e;
 }
 
 .fcsuccess {

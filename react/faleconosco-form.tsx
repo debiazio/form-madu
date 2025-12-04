@@ -143,14 +143,13 @@ const FaleConoscoForm: React.FC = () => {
 
   return (
     <div className={styles.fccontainer}>
-      <h2 className={styles.fctitle}>Fale Conosco</h2>
 
       <form onSubmit={handleSubmit} className={styles.fcform}>
 
         <input
           type="text"
           name="Nome"
-          placeholder="Nome"
+          placeholder="Seu nome completo"
           value={form.Nome}
           onChange={handleChange}
           onBlur={(e) => validateField('Nome', e.target.value)}
@@ -159,9 +158,20 @@ const FaleConoscoForm: React.FC = () => {
         {errors.Nome && <p className={styles.fcerror}>{errors.Nome}</p>}
 
         <input
+          type="email"
+          name="Email"
+          placeholder="Seu e-mail"
+          value={form.Email}
+          onChange={handleChange}
+          onBlur={(e) => validateField('Email', e.target.value)}
+          className={styles.fcinput}
+        />
+        {errors.Email && <p className={styles.fcerror}>{errors.Email}</p>}
+
+        <input
           type="text"
           name="Telefone"
-          placeholder="Telefone"
+          placeholder="Seu telefone"
           value={form.Telefone}
           onChange={handleChange}
           onBlur={(e) => validateField('Telefone', e.target.value)}
@@ -169,16 +179,6 @@ const FaleConoscoForm: React.FC = () => {
         />
         {errors.Telefone && <p className={styles.fcerror}>{errors.Telefone}</p>}
 
-        <input
-          type="email"
-          name="Email"
-          placeholder="E-mail"
-          value={form.Email}
-          onChange={handleChange}
-          onBlur={(e) => validateField('Email', e.target.value)}
-          className={styles.fcinput}
-        />
-        {errors.Email && <p className={styles.fcerror}>{errors.Email}</p>}
 
         <input
           type="text"
