@@ -11,7 +11,9 @@
     "store": "0.x",
     "styles": "2.x"
   },
-  "dependencies": {},
+  "dependencies": {
+    "vtex.styleguide": "9.x"
+  },
   "registries": [
     "smartcheckout"
   ],

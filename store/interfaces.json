@@ -1,5 +1,8 @@
 {
   "customformmadu": {
     "component": "faleconosco-form"
+  },
+  "app-modalcep": {
+    "component": "modalcep"
   }
 }
