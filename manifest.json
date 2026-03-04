@@ -1,7 +1,7 @@
 {
   "vendor": "madumfm2",
   "name": "appformmadu",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "title": "form-madu",
   "description": "App para corrigir bug do formulário de contato",
   "builders": {
