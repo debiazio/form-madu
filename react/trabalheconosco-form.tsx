@@ -35,6 +35,22 @@ const TrabalheConoscoForm: React.FC = () => {
     return formatted
   }
 
+  // Formata em PT-BR (São Paulo) e 24h
+  const formatDateTimeBR = (date: Date) => {
+    const parts = new Intl.DateTimeFormat('pt-BR', {
+      timeZone: 'America/Sao_Paulo',
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    }).formatToParts(date)
+
+    const get = (type: string) => parts.find((p) => p.type === type)?.value || ''
+    return `${get('day')}/${get('month')}/${get('year')} ${get('hour')}:${get('minute')}`
+  }
+
   const validateField = (name: string, value: any) => {
     const newErrors: any = { ...errors }
 
@@ -131,9 +147,12 @@ const TrabalheConoscoForm: React.FC = () => {
     setError(false)
 
     try {
+      const now = new Date()
+
       const payload = {
         ...form,
-        DataEnvio: new Date().toISOString(),
+        DataHora: now.toISOString(),        // mantém ISO (útil pra filtros/integrações)
+        DataHoraBR: formatDateTimeBR(now),  // texto final (sem fuso/AMPM)
       }
 
       const res = await fetch('/api/dataentities/TC/documents', {
@@ -268,7 +287,9 @@ const TrabalheConoscoForm: React.FC = () => {
           placeholder="Fale um pouco sobre você"
           value={form.MensagemTexto}
           onChange={handleChange}
-          onBlur={(e) => validateField('MensagemTexto', (e.target as HTMLTextAreaElement).value)}
+          onBlur={(e) =>
+            validateField('MensagemTexto', (e.target as HTMLTextAreaElement).value)
+          }
           className={styles.fctextarea}
         />
         {errors.MensagemTexto && <p className={styles.fcerror}>{errors.MensagemTexto}</p>}
