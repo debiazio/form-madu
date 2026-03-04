@@ -4,5 +4,8 @@
   },
   "app-modalcep": {
     "component": "modalcep"
+  },
+  "formtrabalheconosco": {
+    "component": "trabalheconosco-form"
   }
 }
