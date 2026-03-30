@@ -1,7 +1,7 @@
 {
   "vendor": "madumfm2",
   "name": "appformmadu",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "title": "form-madu",
   "description": "App para corrigir bug do formulário de contato",
   "builders": {
@@ -14,7 +14,9 @@
   "dependencies": {
     "vtex.styleguide": "9.x"
   },
-  "registries": ["smartcheckout"],
+  "registries": [
+    "smartcheckout"
+  ],
   "policies": [
     {
       "name": "outbound-access",
