@@ -261,7 +261,7 @@ const FaleConoscoForm: React.FC = () => {
           disabled={submitDisabled}
           className={styles.fcbutton}
         >
-          {loading ? 'Enviando...' : 'Enviar'}
+          {loading ? 'Enviando..' : 'Enviar'}
         </button>
 
         {success && (
