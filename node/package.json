@@ -1,0 +1,20 @@
+{
+  "name": "form-madu2-node",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "@vtex/api": "6.50.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.0",
+    "madumfm2.appformmadu": "https://devmadu--madumfm2.myvtex.com/_v/private/typings/linked/v1/madumfm2.appformmadu@0.0.4+build1774640150/public/@types/madumfm2.appformmadu",
+    "typescript": "3.9.7",
+    "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.16/public/@types/vtex.styleguide"
+  },
+  "resolutions": {
+    "@types/node": "12.20.55",
+    "@opentelemetry/api": "1.0.4",
+    "@types/express-serve-static-core": "4.17.19",
+    "@types/koa": "2.11.6"
+  }
+}

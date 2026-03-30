@@ -29,6 +29,8 @@
     ]
   },
   "devDependencies": {
+    "@ljharb/tsconfig": "^0.3.2",
+    "@types/node": "12.12.21",
     "@types/react-google-recaptcha": "^2.1.9",
     "@vtex/danger": "^0.2.7",
     "@vtex/intl-equalizer": "^2.5.0",
@@ -45,5 +47,8 @@
   "intl-equalizer": {
     "referenceLocale": "en",
     "localeDirectory": "messages"
+  },
+  "dependencies": {
+    "@vtex/api": "^7.3.1"
   }
 }

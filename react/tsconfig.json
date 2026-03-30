@@ -2,12 +2,13 @@
   "extends": "@vtex/tsconfig",
   "compilerOptions": {
     "noEmitOnError": false,
-    "lib": [
-      "dom"
-    ],
+    "lib": ["dom", "es2020"],
     "module": "esnext",
     "moduleResolution": "node",
-    "target": "es2017"
+    "target": "es2020",
+    "skipLibCheck": true,
+    "allowJs": true,
+    "noEmit": true
   },
   "include": [
     "./typings/*.d.ts",
@@ -15,5 +16,6 @@
     "./**/*.ts",
     "./**/*.js",
     "./**/*.jsx"
-  ]
+  ],
+  "exclude": ["node", "dist"]
 }

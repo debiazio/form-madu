@@ -19,7 +19,7 @@
     "@vtex/tsconfig": "^0.4.4",
     "apollo-cache-inmemory": "^1.6.5",
     "graphql": "^14.6.0",
-    "madumfm2.appformmadu": "https://devmadu--madumfm2.myvtex.com/_v/private/typings/linked/v1/madumfm2.appformmadu@0.0.2+build1772544652/public/@types/madumfm2.appformmadu",
+    "madumfm2.appformmadu": "https://devmadu--madumfm2.myvtex.com/_v/private/typings/linked/v1/madumfm2.appformmadu@0.0.4+build1774640150/public/@types/madumfm2.appformmadu",
     "typescript": "3.9.7",
     "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.136.2/public/@types/vtex.render-runtime",
     "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.16/public/@types/vtex.styleguide"

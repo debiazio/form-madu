@@ -1,0 +1,14 @@
+{
+  "memory": 256,
+  "timeout": 10,
+  "minReplicas": 1,
+  "maxReplicas": 3,
+  "workers": 1,
+  "ttl": 10,
+  "routes": {
+    "faleConosco": {
+      "path": "/_v/fale-conosco",
+      "public": true
+    }
+  }
+}

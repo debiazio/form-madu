@@ -3961,9 +3961,9 @@ lz-string@^1.4.4:
   resolved "https://registry.yarnpkg.com/lz-string/-/lz-string-1.4.4.tgz#c0d8eaf36059f705796e1e344811cf4c498d3a26"
   integrity sha512-0ckx7ZHRPqb0oUm8zNr+90mtf9DQB60H1wMCjBtfi62Kl3a7JbHob6gA2bC+xRvZoOL+1hzUK8jeuEIQE8svEQ==
 
-"madumfm2.appformmadu@https://devmadu--madumfm2.myvtex.com/_v/private/typings/linked/v1/madumfm2.appformmadu@0.0.2+build1772544652/public/@types/madumfm2.appformmadu":
-  version "0.0.2"
-  resolved "https://devmadu--madumfm2.myvtex.com/_v/private/typings/linked/v1/madumfm2.appformmadu@0.0.2+build1772544652/public/@types/madumfm2.appformmadu#d51c5be72b95f9d7c9f42b311c47eb25ea52a416"
+"madumfm2.appformmadu@https://devmadu--madumfm2.myvtex.com/_v/private/typings/linked/v1/madumfm2.appformmadu@0.0.4+build1774640150/public/@types/madumfm2.appformmadu":
+  version "0.0.0"
+  resolved "https://devmadu--madumfm2.myvtex.com/_v/private/typings/linked/v1/madumfm2.appformmadu@0.0.4+build1774640150/public/@types/madumfm2.appformmadu#5c15259e1c3897fddca93e2ec52e4e4fbb45a52c"
 
 make-dir@^3.0.0:
   version "3.1.0"

@@ -42,7 +42,7 @@ select{
 .fctextarea {
   padding: 12px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 20px;
   font-size: 16px;
   background-color: unset!important;
 }
@@ -54,17 +54,17 @@ select{
 
 .fcbutton {
   padding: 12px;
-  background: #04264B;
+  background: #32a078;
   color: white;
   font-weight: bold;
   border: none;
-  border-radius: 8px;
+  border-radius: 20px;
   cursor: pointer;
   transition: 0.3s;
 }
 
 .fcbutton:hover {
-  background: #05386e;
+  background: #32a078;
 }
 
 .fcsuccess {

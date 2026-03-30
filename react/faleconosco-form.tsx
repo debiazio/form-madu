@@ -1,44 +1,63 @@
 import React, { useState } from 'react'
+
 import styles from './styles.css'
 
+type FormState = {
+  Assunto: string
+  Mensagem: string
+  Email: string
+  Nome: string
+  Telefone: string
+}
+
+type ErrorState = {
+  Nome: string
+  Email: string
+  Telefone: string
+  Assunto: string
+  Mensagem: string
+}
+
+const initialForm: FormState = {
+  Assunto: '',
+  Mensagem: '',
+  Email: '',
+  Nome: '',
+  Telefone: '',
+}
+
+const initialErrors: ErrorState = {
+  Nome: '',
+  Email: '',
+  Telefone: '',
+  Assunto: '',
+  Mensagem: '',
+}
+
 const FaleConoscoForm: React.FC = () => {
-  const [form, setForm] = useState({
-    Assunto: '',
-    Mensagem: '',
-    Email: '',
-    Nome: '',
-    Telefone: ''
-  })
-
-  const [errors, setErrors] = useState({
-    Nome: '',
-    Email: '',
-    Telefone: '',
-    Assunto: '',
-    Mensagem: ''
-  })
-
+  const [form, setForm] = useState<FormState>(initialForm)
+  const [errors, setErrors] = useState<ErrorState>(initialErrors)
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState(false)
 
-  // Máscara (XX)9XXXX-XXXX
   const maskPhone = (value: string) => {
     const digits = value.replace(/\D/g, '').slice(0, 11)
     let formatted = digits.replace(/^(\d{2})(\d)/g, '($1)$2')
+
     formatted = formatted.replace(/(\d{5})(\d)/, '$1-$2')
+
     return formatted
   }
 
-  const validateField = (name: string, value: string) => {
-    const newErrors: any = { ...errors }
+  const validateField = (name: keyof FormState, value: string) => {
+    const newErrors: ErrorState = { ...errors }
 
     switch (name) {
       case 'Nome':
-        newErrors.Nome =
-          /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(value)
-            ? ''
-            : 'O nome deve conter apenas letras'
+        newErrors.Nome = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(value.trim())
+          ? ''
+          : 'O nome deve conter apenas letras'
         break
 
       case 'Telefone': {
@@ -53,14 +72,14 @@ const FaleConoscoForm: React.FC = () => {
         } else {
           newErrors.Telefone = ''
         }
+
         break
       }
 
       case 'Email':
-        newErrors.Email =
-          /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
-            ? ''
-            : 'E-mail inválido'
+        newErrors.Email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())
+          ? ''
+          : 'E-mail inválido'
         break
 
       case 'Assunto':
@@ -71,9 +90,14 @@ const FaleConoscoForm: React.FC = () => {
         newErrors.Mensagem =
           value.trim() === '' ? 'A mensagem é obrigatória' : ''
         break
+
+      default:
+        break
     }
 
     setErrors(newErrors)
+
+    return newErrors
   }
 
   const handleChange = (
@@ -85,21 +109,61 @@ const FaleConoscoForm: React.FC = () => {
       value = maskPhone(value)
     }
 
-    setForm({ ...form, [name]: value })
-    validateField(name, value)
+    const fieldName = name as keyof FormState
+
+    setForm((prev) => ({
+      ...prev,
+      [fieldName]: value,
+    }))
+
+    validateField(fieldName, value)
   }
 
-  const isFormValid = () => {
-    const noErrors = Object.values(errors).every((e) => e === '')
-    const allFilled = Object.values(form).every((v) => v.trim() !== '')
+  const getValidatedErrors = (currentForm: FormState): ErrorState => {
+    const nextErrors: ErrorState = { ...initialErrors }
+
+    if (!/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(currentForm.Nome.trim())) {
+      nextErrors.Nome = 'O nome deve conter apenas letras'
+    }
+
+    const phoneDigits = currentForm.Telefone.replace(/\D/g, '')
+
+    if (phoneDigits.length !== 11) {
+      nextErrors.Telefone = 'O telefone deve ter 11 números'
+    } else if (phoneDigits.substring(0, 2) === '00') {
+      nextErrors.Telefone = 'DDD inválido'
+    } else if (/^(\d)\1+$/.test(phoneDigits)) {
+      nextErrors.Telefone = 'Telefone inválido'
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(currentForm.Email.trim())) {
+      nextErrors.Email = 'E-mail inválido'
+    }
+
+    if (currentForm.Assunto.trim() === '') {
+      nextErrors.Assunto = 'O assunto é obrigatório'
+    }
+
+    if (currentForm.Mensagem.trim() === '') {
+      nextErrors.Mensagem = 'A mensagem é obrigatória'
+    }
+
+    return nextErrors
+  }
+
+  const isFormValid = (nextErrors = errors, currentForm = form) => {
+    const noErrors = Object.values(nextErrors).every((e) => e === '')
+    const allFilled = Object.values(currentForm).every((v) => v.trim() !== '')
+
     return noErrors && allFilled
   }
 
   const validateForm = () => {
-    Object.keys(form).forEach((key) =>
-      validateField(key, (form as any)[key])
-    )
-    return isFormValid()
+    const nextErrors = getValidatedErrors(form)
+
+    setErrors(nextErrors)
+
+    return isFormValid(nextErrors, form)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -112,40 +176,33 @@ const FaleConoscoForm: React.FC = () => {
     setError(false)
 
     try {
-      const res = await fetch('/api/dataentities/PE/documents', {
+      const res = await fetch('/_v/fale-conosco', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Accept: 'application/vnd.vtex.ds.v10+json'
+          Accept: 'application/json',
         },
-        body: JSON.stringify(form)
+        body: JSON.stringify(form),
       })
 
-      if (res.ok) {
-        setSuccess(true)
-        setForm({
-          Assunto: '',
-          Mensagem: '',
-          Email: '',
-          Nome: '',
-          Telefone: ''
-        })
-      } else {
-        setError(true)
+      if (!res.ok) {
+        throw new Error(`Erro ao enviar formulário: ${res.status}`)
       }
+
+      setSuccess(true)
+      setForm(initialForm)
+      setErrors(initialErrors)
     } catch (err) {
       console.error(err)
       setError(true)
+    } finally {
+      setLoading(false)
     }
-
-    setLoading(false)
   }
 
   return (
     <div className={styles.fccontainer}>
-
       <form onSubmit={handleSubmit} className={styles.fcform}>
-
         <input
           type="text"
           name="Nome"
@@ -179,7 +236,6 @@ const FaleConoscoForm: React.FC = () => {
         />
         {errors.Telefone && <p className={styles.fcerror}>{errors.Telefone}</p>}
 
-
         <input
           type="text"
           name="Assunto"
@@ -209,7 +265,9 @@ const FaleConoscoForm: React.FC = () => {
           {loading ? 'Enviando...' : 'Enviar'}
         </button>
 
-        {success && <p className={styles.fcsuccess}>Mensagem enviada com sucesso!</p>}
+        {success && (
+          <p className={styles.fcsuccess}>Mensagem enviada com sucesso!</p>
+        )}
         {error && <p className={styles.fcerror}>Ocorreu um erro ao enviar.</p>}
       </form>
     </div>
