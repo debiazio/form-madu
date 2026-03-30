@@ -1,0 +1,87 @@
+[type=checkbox]{
+  padding-right: 5px!important;
+}
+
+.fcbutton:disabled {
+  background-color: #bfbfbf !important;
+  color: #ffffff !important;
+  cursor: not-allowed !important;
+  opacity: 1 !important;
+  border-color: #bfbfbf !important;
+}
+
+
+/* .fccontainer {
+  margin: 50px auto;
+  padding: 24px;
+  border-radius: 12px;
+} */
+
+.fctitle {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.fcform {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.fcform label{
+  display: flex;
+  gap: 5px;
+}
+
+select{
+  color: #9798b3;
+}
+
+.fcinput,
+.fctextarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: unset!important;
+}
+
+.fctextarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.fcbutton {
+  padding: 12px;
+  background: #32a078;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.fcbutton:hover {
+  background: #05386e;
+}
+
+.fcsuccess {
+  color: #1a8f3a;
+  margin: 0;
+  margin-left: 5px;
+}
+
+.fcerror {
+  color: #c62828;
+  margin: 0;
+  margin-left: 5px;
+}
+
+@media screen and (max-width: 1024px) {
+  .fccontainer {
+    margin: unset;
+    max-width: unset;
+  }
+}
